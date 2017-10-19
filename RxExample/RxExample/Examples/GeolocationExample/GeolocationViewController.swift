@@ -13,13 +13,13 @@ import CoreLocation
     import RxCocoa
 #endif
 
-private extension Reactive where Base: UILabel {
-    var coordinates: UIBindingObserver<Base, CLLocationCoordinate2D> {
-        return UIBindingObserver(UIElement: base) { label, location in
-            label.text = "Lat: \(location.latitude)\nLon: \(location.longitude)"
-        }
-    }
-}
+//private extension Reactive where Base: UILabel {
+//    var coordinates: UIBindingObserver<Base, CLLocationCoordinate2D> {
+//        return UIBindingObserver(UIElement: base) { label, location in
+//            label.text = "Lat: \(location.latitude)\nLon: \(location.longitude)"
+//        }
+//    }
+//}
 
 class GeolocationViewController: ViewController {
     
@@ -31,29 +31,29 @@ class GeolocationViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(noGeolocationView)
-        
-        let geolocationService = GeolocationService.instance
-        
-        geolocationService.authorized
-            .drive(noGeolocationView.rx.isHidden)
-            .disposed(by: disposeBag)
-        
-        geolocationService.location
-            .drive(label.rx.coordinates)
-            .disposed(by: disposeBag)
-        
-        button.rx.tap
-            .bind { [weak self] in
-                self?.openAppPreferences()
-            }
-            .disposed(by: disposeBag)
-        
-        button2.rx.tap
-            .bind { [weak self] in
-                self?.openAppPreferences()
-            }
-            .disposed(by: disposeBag)
+//        view.addSubview(noGeolocationView)
+//        
+//        let geolocationService = GeolocationService.instance
+//        
+//        geolocationService.authorized
+//            .drive(noGeolocationView.rx.isHidden)
+//            .disposed(by: disposeBag)
+//        
+//        geolocationService.location
+//            .drive(label.rx.coordinates)
+//            .disposed(by: disposeBag)
+//        
+//        button.rx.tap
+//            .bind { [weak self] in
+//                self?.openAppPreferences()
+//            }
+//            .disposed(by: disposeBag)
+//        
+//        button2.rx.tap
+//            .bind { [weak self] in
+//                self?.openAppPreferences()
+//            }
+//            .disposed(by: disposeBag)
     }
     
     private func openAppPreferences() {
